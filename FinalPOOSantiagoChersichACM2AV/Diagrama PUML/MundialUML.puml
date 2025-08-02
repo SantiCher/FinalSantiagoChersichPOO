@@ -1,0 +1,96 @@
+@startuml
+class Partido {
+- Date fecha
+- Equipo local
+- Equipo visitante
+- Resultado resultado
++ Date getFecha()
++ void setFecha(Date)
++ Equipo getLocal()
++ void setLocal(Equipo)
++ Equipo getVisitante()
++ void setVisitante(Equipo)
++ Resultado getResultado()
++ void setResultado(Resultado)
++ boolean fueJugado()
++ Equipo getGanador()
++ String toString()
+}
+
+
+class Llave {
++ List<Equipo> getEquiposQueAvanzan()
++ void mostrarResultados()
+}
+
+abstract class EtapaMundial {
+# String descripcionEtapa
+# List<Partido> partidos
++ String getDescripcionEtapa()
++ void setDescripcionEtapa(String)
++ List<Partido> getPartidos()
++ void addPartido(Partido)
++ {abstract}List<Equipo> getEquiposQueAvanzan()
++ boolean estaCompleta()
++ int getCantidadPartidos()
++ String toString()
+}
+
+
+class MundialCompleto {
++ {static} void main(String[])
+- {static} List<Equipo> crearEquipos32()
+- {static} List<Grupo> crearFaseGrupos(List<Equipo>)
+- {static} List<Equipo> simularFaseGrupos(List<Grupo>)
+- {static} Llave crearOctavos(List<Equipo>)
+- {static} Llave crearCuartos(List<Equipo>)
+- {static} Llave crearSemifinales(List<Equipo>)
+- {static} Llave crearFinal(List<Equipo>)
+- {static} List<Equipo> simularLlave(Llave)
+- {static} void mostrarClasificados(List<Equipo>)
+- {static} Resultado generarResultadoAleatorio()
+- {static} Resultado generarResultadoEliminatorio()
+}
+
+class Grupo {
++ List<Equipo> getEquiposQueAvanzan()
++ Map<Equipo,Integer> calcularTablaPosiciones()
++ void mostrarTablaPosiciones()
+}
+
+class Resultado {
+- int golesLocal
+- int golesVisitante
++ int getGolesLocal()
++ void setGolesLocal(int)
++ int getGolesVisitante()
++ void setGolesVisitante(int)
++ boolean ganoLocal()
++ boolean empate()
++ int getDiferenciaGoles()
++ int getTotalGoles()
++ String toString()
++ boolean equals(Object)
++ int hashCode()
+}
+
+
+class Equipo {
+- String nombre
+- List<Partido> partidosJugados
++ String getNombre()
++ void setNombre(String)
++ List<Partido> getPartidosJugados()
++ void addPartidoJugado(Partido)
++ int getCantidadPartidosJugados()
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
+
+
+
+
+EtapaMundial <|-- Llave
+EtapaMundial <|-- Grupo
+@enduml
